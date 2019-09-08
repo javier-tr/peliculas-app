@@ -12,5 +12,6 @@
       </select>
     </div>
   </div>
-  <app-resultado [movies]="movies"></app-resultado>
+  <app-resultado *ngIf="!isLoading" [movies]="movies"></app-resultado>
+  <app-spinner *ngIf="isLoading"></app-spinner>
 </div>

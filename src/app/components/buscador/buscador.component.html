@@ -1,0 +1,15 @@
+<div class="container animated fadeIn fast">
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-12">
+      <app-resultado *ngIf="movies && movies.length > 0; else noMovies" [movies]="movies"></app-resultado>
+      <ng-template #noMovies>
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">No se han encontrado películas</h4>
+          <p>No se han encontrado películas con el término de búsqueda ingresado. Ingresa otro término y vuelve a intentarlo.</p>
+          <p class="mb-0"><button type="button" (click)="goHome()" class="btn btn-primary">Ir al Home</button></p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+</div>

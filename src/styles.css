@@ -110,4 +110,9 @@ body{
     max-width: 100px;
   }
 
+  .custom-alert {
+    line-height: 14px;
+    margin-right: 2px;
+  }
+
   

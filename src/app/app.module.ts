@@ -10,6 +10,8 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ResultadoComponent } from './components/resultado/resultado.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ResultadoComponent } from './components/resultado/resultado.component';
     NavbarComponent,
     FooterComponent,
     ResultadoComponent,
+    BuscadorComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

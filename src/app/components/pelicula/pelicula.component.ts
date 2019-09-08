@@ -14,17 +14,20 @@ export class PeliculaComponent implements OnInit {
   movie: Movie;
   imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
   trailer: string;
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
     private _movieService: PeliculasService,
     private _location: Location,
   ) {
+    this.isLoading = true;
     this.route.params.subscribe(params => {
       this.movieId = params.id;
       _movieService.getMovie(this.movieId)
       .subscribe(movie => {
         this.movie = new Movie(movie);
+        this.isLoading = false;
       }, err => {
         console.log(err);
       });

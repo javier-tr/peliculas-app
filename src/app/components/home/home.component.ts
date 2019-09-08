@@ -14,12 +14,14 @@ export class HomeComponent implements OnInit {
   years: number[] = [];
   selectedYear: string = null;
   best = 0;
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public _movieService: PeliculasService,
   ) {
+    this.isLoading = true;
     this.route.params.subscribe(params => {
       this.category = params.category;
       this.selectedYear = params.year;
@@ -37,9 +39,10 @@ export class HomeComponent implements OnInit {
           default:
             this.getPopulars();
         }
-      }
-      if (this.selectedYear) {
+      } else if (this.selectedYear) {
         this.getBest(this.selectedYear);
+      } else {
+        this.getPopulars();
       }
     });
   }
@@ -52,6 +55,7 @@ export class HomeComponent implements OnInit {
     this._movieService.getPopulars()
     .subscribe((response: any) => {
       this.movies = response.results.map(m => new Movie(m));
+      this.isLoading = false;
     }, err => {
       console.log(err);
     });
@@ -61,6 +65,7 @@ export class HomeComponent implements OnInit {
     this._movieService.getKids()
     .subscribe((response: any) => {
       this.movies = response.results.map(m => new Movie(m));
+      this.isLoading = false;
     }, err => {
       console.log(err);
     });
@@ -70,6 +75,7 @@ export class HomeComponent implements OnInit {
     this._movieService.getInTheaters()
     .subscribe((response: any) => {
       this.movies = response.results.map(m => new Movie(m));
+      this.isLoading = false;
     }, err => {
       console.log(err);
     });
@@ -79,6 +85,7 @@ export class HomeComponent implements OnInit {
     this._movieService.getBest(+year)
       .subscribe((response: any) => {
         this.movies = response.results.map(m => new Movie(m));
+        this.isLoading = false;
       }, err => {
         console.log(err);
       });

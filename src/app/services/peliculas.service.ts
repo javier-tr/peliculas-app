@@ -46,6 +46,11 @@ export class PeliculasService {
     return this.http.jsonp(url, 'callback');
   }
 
+  search(query: string) {
+    const url = `${this.urlMoviedb}/search/movie?query=${query}&api_key=${this.apikey}&language=es`;
+    return this.http.jsonp(url, 'callback');
+  }
+
   private decreaseOneMonthOneWeek(date: Date): Date {
     const newDateMonth = new Date(date.setMonth(date.getMonth() - 1));
     const finalDate = new Date(newDateMonth.setDate(date.getDate() - 7));

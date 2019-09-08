@@ -1,6 +1,9 @@
-<div class="card-columns">
+<div class="card-columns animated fadeIn fast">
   <div class="card bg-dark text-white pointer" *ngFor="let movie of movies | slice:0:9" (click)="movieDetails(movie)">
-    <img src="{{imageBaseUrl}}{{movie.poster_path}}" class="card-img-top" alt="{{movie.title}}">
+    <img *ngIf="movie.poster_path; else noImage" src="{{imageBaseUrl}}{{movie.poster_path}}" class="card-img-top" alt="{{movie.title}}">
+    <ng-template #noImage>
+      <h5 class="ml-3 mt-3">{{movie.title}}</h5>
+    </ng-template>
     <div class="card-img-overlay" [ngClass]="{ 'show': movie.show_stats, 'hide': !movie.show_stats }"
       (mouseenter)="hoverItem(movie)" (mouseleave)="hoverItem(movie)">
       <p class="card-text">

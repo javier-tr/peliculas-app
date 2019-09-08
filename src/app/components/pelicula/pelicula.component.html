@@ -1,7 +1,7 @@
-<div class="card mb-3 w90 ml-auto mr-auto" *ngIf="movie">
+<div class="card mb-3 w90 ml-auto mr-auto animated fadeIn fast" *ngIf="movie && !isLoading">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="{{imageBaseUrl}}{{movie.poster_path}}" class="card-img" alt="{{movie.title}}">
+      <img *ngIf="movie.poster_path" src="{{imageBaseUrl}}{{movie.poster_path}}" class="card-img" alt="{{movie.title}}">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -30,3 +30,4 @@
     </div>
   </div>
 </div>
+<app-spinner *ngIf="isLoading"></app-spinner>
