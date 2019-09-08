@@ -1,0 +1,16 @@
+<div class="card-columns">
+  <div class="card bg-dark text-white pointer" *ngFor="let movie of movies | slice:0:9" (click)="movieDetails(movie)">
+    <img src="{{imageBaseUrl}}{{movie.poster_path}}" class="card-img-top" alt="{{movie.title}}">
+    <div class="card-img-overlay" [ngClass]="{ 'show': movie.show_stats, 'hide': !movie.show_stats }"
+      (mouseenter)="hoverItem(movie)" (mouseleave)="hoverItem(movie)">
+      <p class="card-text">
+        <span class="badge badge-secondary">Popularidad: {{movie.popularity}}</span> <br>
+        <span class="badge badge-secondary">Votos: {{movie.vote_count}}</span>
+      </p>
+    </div>
+    <div class="card-body">
+      <p class="card-text text-justify">{{movie.overview}}</p>
+      <p class="card-text"><small class="text-muted">{{movie.release_date | date: 'dd-MM-yyyy'}}</small></p>
+    </div>
+  </div>
+</div>

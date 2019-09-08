@@ -1,0 +1,8 @@
+<div class="container animated fadeIn fast">
+  <div class="botonera">
+    <a [routerLink]="['/peliculas', 'POPULAR']" routerLinkActive="active" class="btn btn-outline-primary mr-2"><i class="fa fa-fire"></i> Populares</a>
+    <a [routerLink]="['/peliculas', 'KIDS']" routerLinkActive="active" class="btn btn-outline-primary mr-2"><i class="fa fa-child"></i> Niños</a>
+    <a [routerLink]="['/peliculas', 'IN-THEATERS']" routerLinkActive="active" class="btn btn-outline-primary mr-2"><i class="fa fa-star"></i> En Teatros</a>
+  </div>
+  <app-resultado [movies]="movies"></app-resultado>
+</div>

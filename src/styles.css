@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body{
+    margin-bottom: 60px;
+  }
+  
+  .main-container{
+    padding-top: 20px;
+  }
+  
+  .puntero{
+    cursor: pointer;
+  }
+  
+  
+  .div-pic-1{
+    width: 100%;
+    height: 300px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+  .pic-titulo{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .div-pic-2{
+    width: 100%;
+    height: 200px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+  
+  
+  /* Animaciones */
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .fast {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+
+  .hide {
+    opacity: 0;
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .w90 {
+    max-width: 90%;
+  }
+  
+  .botonera {
+    margin-bottom: 20px;
+  }
+
+  .h100 {
+    max-height: 100px;
+  }
+
+  .w100 {
+    max-width: 100px;
+  }
+
+  
