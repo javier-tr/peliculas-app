@@ -1,46 +1,51 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PeliculasService } from '../../services/peliculas.service';
 import { Movie } from 'src/app/models/movie.model';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   category: string = null;
+  years: number[] = [];
+  selectedYear: string = null;
+  best = 0;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public _movieService: PeliculasService,
   ) {
     this.route.params.subscribe(params => {
       this.category = params.category;
-      console.log(this.category);
-      switch (this.category) {
-        case 'POPULAR':
-          this.getPopulars();
-          break;
-        case 'KIDS':
-          this.getKids();
-          break;
-        case 'IN-THEATERS':
-          this.getInTheaters();
-          break;
-        default:
-          this.getPopulars();
+      this.selectedYear = params.year;
+      if (this.category) {
+        switch (this.category) {
+          case 'POPULAR':
+            this.getPopulars();
+            break;
+          case 'KIDS':
+            this.getKids();
+            break;
+          case 'IN-THEATERS':
+            this.getInTheaters();
+            break;
+          default:
+            this.getPopulars();
+        }
+      }
+      if (this.selectedYear) {
+        this.getBest(this.selectedYear);
       }
     });
   }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
-
+    this.setYears();
   }
 
   getPopulars() {
@@ -68,5 +73,29 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, err => {
       console.log(err);
     });
+  }
+
+  getBest(year: string | number) {
+    this._movieService.getBest(+year)
+      .subscribe((response: any) => {
+        this.movies = response.results.map(m => new Movie(m));
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  goToBest() {
+    if (this.best > 0) {
+      this.router.navigate(['/mejores-peliculas', this.best]);
+    }
+  }
+
+  setYears() {
+    const currentYear = new Date().getFullYear();
+    let i = currentYear;
+    const end = currentYear - 5;
+    for (i; i > end; i -= 1) {
+      this.years.push(i);
+    }
   }
 }

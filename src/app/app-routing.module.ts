@@ -6,6 +6,7 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'peliculas/:category', component: HomeComponent },
+  { path: 'mejores-peliculas/:year', component: HomeComponent },
   { path: 'pelicula/:id', component: PeliculaComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

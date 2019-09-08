@@ -37,7 +37,12 @@ export class PeliculasService {
   }
 
   getMovieVideos(id) {
-    const url = `${this.urlMoviedb}/movie/${id}/videos?&api_key=${this.apikey}&language=es`;
+    const url = `${this.urlMoviedb}/movie/${id}/videos?api_key=${this.apikey}&language=es`;
+    return this.http.jsonp(url, 'callback');
+  }
+
+  getBest(year: number) {
+    const url = `${this.urlMoviedb}/discover/movie?primary_release_year=${year}&sort_by=vote_average.desc&api_key=${this.apikey}&language=es`;
     return this.http.jsonp(url, 'callback');
   }
 
